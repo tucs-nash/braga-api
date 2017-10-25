@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name="AGENT")
+import lombok.Data;
+
+@Entity(name="AGENTS")
+@Data
 public class Agent {
 
     @Id

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,7 +21,13 @@ public class LoginController {
 
     @PostMapping("/auth")
     public ResponseEntity<LoginResponse> authenticate(@RequestBody LoginRequest request)
-        throws UnsupportedEncodingException {
+            throws UnsupportedEncodingException {
         return ResponseEntity.ok(authenticationService.authentication(request));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<String> logout() throws UnsupportedEncodingException {
+        SecurityContextHolder.getContext().setAuthentication(null);
+        return ResponseEntity.ok("OK");
     }
 }

@@ -9,9 +9,9 @@ import javax.persistence.Id;
 
 import lombok.Data;
 
-@Entity(name = "USER")
+@Entity(name = "USERS")
 @Data
-public class User {
+public class ApiUser {
 
     @Id
     @GeneratedValue

@@ -7,7 +7,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-@Entity(name="COMPANY")
+import lombok.Data;
+
+@Entity(name="COMPANIES")
+@Data
 public class Company {
 
     @Id

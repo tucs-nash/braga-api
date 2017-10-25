@@ -13,6 +13,6 @@ public class WebMvcConfiguration extends WebMvcConfigurerAdapter {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new LocalDateConverter("dd/MM/yyyy"));
+        registry.addConverter(new LocalDateConverter("yyyy-MM-dd"));
     }
 }

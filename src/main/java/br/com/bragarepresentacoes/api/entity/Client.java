@@ -12,13 +12,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-@Entity(name="CLIENT")
+@Entity(name="CLIENTS")
 @Data
 public class Client {
 
@@ -27,13 +25,13 @@ public class Client {
     @Column(name = "ID")
     private Long id;
     
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "USER_ID")
-    private User user;
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinColumn(name = "USER_ID", updatable=false)
+    private ApiUser user;
     
-    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss")
-    @Column(name = "CREATE_DATE")
+    @JsonIgnore
+    @Column(name = "CREATE_DATE", updatable=false)
     private LocalDateTime createDate;
     
     @Column(name = "NAME")
